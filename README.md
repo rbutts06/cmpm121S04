@@ -23,10 +23,9 @@ You can move all these little changes into one module or function so that there�
 Code:
 In this code in order to change the tokens you would have to change multiple places (more in the full file but here are two of the changes).
 
-
-'while( getline(in, line) )  {
+`while( getline(in, line) )  {
       line_count++;
-      len = line.length();
+      len = line.length();`
 
       // get first token
       begin = min(line.find_first_not_of(delim, 0), len);
@@ -45,9 +44,7 @@ In this code in order to change the tokens you would have to change multiple pla
          end   = min(line.find_first_of(delim, begin), len);
          token = line.substr(begin, end-begin);
       }
-   }'
-
-
+   `}`
 
 Duplicate Code: 
 Description:
@@ -56,24 +53,24 @@ Prevention and Refactoring:
 When you see similar code in two places, you can prevent the smell by extracting the similar logic and putting it into a function. Fowler suggests using “Extract Function” (26).
 Code:
 
-'witchHelperUpgrade.addEventListener("click", () => {
+`witchHelperUpgrade.addEventListener("click", () => {
   money -= initialWitchHelperPrice;
   OPC += 1;
   initialWitchHelperPrice = initialWitchHelperPrice * 1.5;
   console.log("OPC " + OPC);
   ouncesPerClick.textContent = "Ounce per click: " + OPC.toString();
   witchHelperUpgrade.textContent =
-    `Buy a Witch Helper: $${initialWitchHelperPrice} (+1 ounce per click)`;
+	Buy a Witch Helper: $${initialWitchHelperPrice} (+1 ounce per click);
   refreshMoney();
-});
+});`
 
-dropperUpgrade.addEventListener("click", () => {
+`dropperUpgrade.addEventListener("click", () => {
   money -= initialdropperUpgradePrice;
   OPS += 0.1;
   initialdropperUpgradePrice = initialdropperUpgradePrice * 1.5;
   console.log("OPS " + OPS);
   ouncesPerSecond.textContent = "Ounce per second: " + OPS.toString();
   dropperUpgrade.textContent =
-    `Buy a Dropper: $${initialdropperUpgradePrice} (+.1 ounce per second)`;
+    Buy a Dropper: $${initialdropperUpgradePrice} (+.1 ounce per second);
   refreshMoney();
-});'
+});`
