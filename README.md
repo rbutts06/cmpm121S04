@@ -10,6 +10,7 @@ Mysterious Names are code names that have little to no distinction from one anot
 Prevention and Refactoring:
 For every code declaration (ie class, variable, function, etc.), you could rename them to become simple and direct in ways that explicitly state their use.
 Code:
+		
 		x = 5;
 		X = 8;
 		print(x + X);
@@ -21,7 +22,9 @@ Prevention and Refactoring:
 You can move all these little changes into one module or function so that there’s only one place to be changed, and in some cases, you can reduce the amount of changes. 
 Code:
 In this code in order to change the tokens you would have to change multiple places (more in the full file but here are two of the changes).
-while( getline(in, line) )  {
+
+
+'while( getline(in, line) )  {
       line_count++;
       len = line.length();
 
@@ -42,7 +45,7 @@ while( getline(in, line) )  {
          end   = min(line.find_first_of(delim, begin), len);
          token = line.substr(begin, end-begin);
       }
-   }
+   }'
 
 
 
@@ -52,7 +55,8 @@ Duplicate code is when two functions or classes do the same thing. This can aris
 Prevention and Refactoring:
 When you see similar code in two places, you can prevent the smell by extracting the similar logic and putting it into a function. Fowler suggests using “Extract Function” (26).
 Code:
-witchHelperUpgrade.addEventListener("click", () => {
+
+'witchHelperUpgrade.addEventListener("click", () => {
   money -= initialWitchHelperPrice;
   OPC += 1;
   initialWitchHelperPrice = initialWitchHelperPrice * 1.5;
@@ -72,4 +76,4 @@ dropperUpgrade.addEventListener("click", () => {
   dropperUpgrade.textContent =
     `Buy a Dropper: $${initialdropperUpgradePrice} (+.1 ounce per second)`;
   refreshMoney();
-});
+});'
