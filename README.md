@@ -14,24 +14,24 @@
 
 Before: 
 ```typescript
-
+// TypeScript
 let x = 5000;
 let y = 3000;
 
 function sub(x: number, y: number) {
-return x - y;
+	return x - y;
 }
 
 sub(x,y);
 ```
 After:
 ```typescript
-
+// TypeScript
 let revenue = 5000;
 let expenses = 3000;
 
 function total_profit(revenue: number, expenses: number) {
-return revenue - expenses;
+	return revenue - expenses;
 }
 
 total_profit(revenue,expenses);
@@ -49,6 +49,7 @@ In this code in order to change the tokens you would have to change multiple pla
 
 Before:
 ```cpp
+// C++
 while(getline(in, line)){
       line_count++;
       len = line.length();
@@ -74,6 +75,7 @@ while(getline(in, line)){
 ```
 After:
 ```cpp
+// C++
 size_t first_token(begin, end){
 	Begin = min(line.find_first_not_of(delim, 0), len);
 	end = min(line.find_first_of(delim, begin), len);
@@ -116,6 +118,7 @@ while(getline(in, line)){
 
 Before:
 ```typescript
+// TypeScript
 witchHelperUpgrade.addEventListener("click", () => {
   money -= initialWitchHelperPrice;
   OPC += 1;
@@ -140,6 +143,7 @@ dropperUpgrade.addEventListener("click", () => {
 ```
 After:
 ```typescript
+// TypeScript
 interface upgrade {
   buttontext: string;
   price: number;
