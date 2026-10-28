@@ -56,7 +56,7 @@ while(getline(in, line)){
       // get first token
       begin = min(line.find_first_not_of(delim, 0), len);
       end = min(line.find_first_of(delim, begin), len);
-      token = line.substr(begin, end-begin);
+      token = line.substr(begin, end - begin);
       
       while(token!=""){  // we have a token
          // update token buffer
@@ -68,7 +68,7 @@ while(getline(in, line)){
          // get next token
          begin = min(line.find_first_not_of(delim, end + 1), len);
          end = min(line.find_first_of(delim, begin), len);
-         token = line.substr(begin, end-begin);
+         token = line.substr(begin, end - begin);
       }
    }
 ```
@@ -77,13 +77,13 @@ After:
 size_t first_token(begin, end){
 	Begin = min(line.find_first_not_of(delim, 0), len);
 	end = min(line.find_first_of(delim, begin), len);
-	token = line.substr(begin, end-begin);
+	token = line.substr(begin, end - begin);
 } 
 
 size_t next_token(begin, end){
 	begin = min(line.find_first_not_of(delim, end + 1), len);
 	end = min(line.find_first_of(delim, begin), len);
-	token = line.substr(begin, end-begin);
+	token = line.substr(begin, end - begin);
 }
 
 while(getline(in, line)){
