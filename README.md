@@ -34,7 +34,7 @@ function total_profit(revenue: number, expenses: number) {
 return revenue - expenses;
 }
 
-total_profit(revenue,expenses)
+total_profit(revenue,expenses);
 ```
 
 
