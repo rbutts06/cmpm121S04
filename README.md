@@ -11,10 +11,21 @@
 Prevention and Refactoring:For every code declaration (ie class, variable, function, etc.), you could rename them to become simple and direct in ways that explicitly state their use.
 
 **Code**:
-		
-		x = 5;
-		X = 8;
-		print(x + X);
+
+let x = 1;
+let y = 2;
+function calc(x:number, y:number){
+	return x + y ;
+}
+function calc2(x:number, y:number){
+	return x - y ;
+}
+
+calc1(x,y);
+
+
+
+
 
 ## Shotgun Surgery
 
