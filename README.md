@@ -12,17 +12,22 @@
 
 **Code**:
 
-	let x = 1;
-	let y = 2;
-	function calc(x:number, y:number){
-		return x + y ;
-	}
-	function calc2(x:number, y:number){
-		return x - y ;
-	}
-	
-	calc1(x,y);
+Before: 
+```typescript
+let x = 1;
+let y = 2;
 
+function calc(x:number, y:number) {
+	return x + y;
+}
+
+function calc2(x:number, y:number) {
+	return x - y;
+}
+
+calc1(x, y);
+```
+After:
 
 
 
@@ -35,6 +40,7 @@
 
 **Code**:
 In this code in order to change the tokens you would have to change multiple places (more in the full file but here are two of the changes).
+
 Before:
 ```cpp
 while(getline(in, line)){
@@ -102,24 +108,79 @@ while(getline(in, line)){
 
 **Code**:
 
-	witchHelperUpgrade.addEventListener("click", () => {
-	  money -= initialWitchHelperPrice;
-	  OPC += 1;
-	  initialWitchHelperPrice = initialWitchHelperPrice * 1.5;
-	  console.log("OPC " + OPC);
- 	 ouncesPerClick.textContent = "Ounce per click: " + OPC.toString();
- 	 witchHelperUpgrade.textContent =
-	Buy a Witch Helper: $${initialWitchHelperPrice} (+1 ounce per click);
- 	 refreshMoney();
-	});
+Before:
+```typescript
+witchHelperUpgrade.addEventListener("click", () => {
+  money -= initialWitchHelperPrice;
+  OPC += 1;
+  initialWitchHelperPrice = initialWitchHelperPrice * 1.5;
+  console.log("OPC " + OPC);
+ ouncesPerClick.textContent = "Ounce per click: " + OPC.toString();
+ witchHelperUpgrade.textContent =
+Buy a Witch Helper: $${initialWitchHelperPrice} (+1 ounce per click);
+ refreshMoney();
+});
 
-	dropperUpgrade.addEventListener("click", () => {
-	  money -= initialdropperUpgradePrice;
-	  OPS += 0.1;
-	  initialdropperUpgradePrice = initialdropperUpgradePrice * 1.5;
-	  console.log("OPS " + OPS);
-	  ouncesPerSecond.textContent = "Ounce per second: " + OPS.toString();
-	  dropperUpgrade.textContent =
-	    Buy a Dropper: $${initialdropperUpgradePrice} (+.1 ounce per second);
-	  refreshMoney();
-	});
+dropperUpgrade.addEventListener("click", () => {
+  money -= initialdropperUpgradePrice;
+  OPS += 0.1;
+  initialdropperUpgradePrice = initialdropperUpgradePrice * 1.5;
+  console.log("OPS " + OPS);
+  ouncesPerSecond.textContent = "Ounce per second: " + OPS.toString();
+  dropperUpgrade.textContent =
+	Buy a Dropper: $${initialdropperUpgradePrice} (+.1 ounce per second);
+  refreshMoney();
+});
+```
+After:
+```typescript
+interface upgrade {
+  buttontext: string;
+  price: number;
+  newopc: number;
+  newops: number;
+  numbought: number;
+}
+
+const upgrades: upgrade[] = [{
+  buttontext: "Buy a Witch Helper: $",
+  price: 100,
+  newopc: 1,
+  newops: 0,
+  numbought: 0,
+}, {
+  buttontext: "Buy a Dropper: $",
+  price: 50,
+  newopc: 0,
+  newops: 0.1,
+  numbought: 0,
+}];
+.
+.
+.
+for (let i = 0; i < upgrades.length; i++) {
+  const newButton = document.createElement("button");
+  newButton.innerText = upgrades[i].buttontext +
+    upgrades[i].price.toString() + " ";
+  newButton.disabled = true;
+  app.append(newButton, document.createElement("br"));
+  buttons.push(newButton);
+
+  newButton.addEventListener("click", () => {
+    if (money >= upgrades[i].price) {
+      money -= upgrades[i].price;
+      upgrades[i].price += upgrades[i].price / 5;
+      upgrades[i].numbought += 1;
+
+      newButton.innerText = upgrades[i].buttontext + "(" +
+        upgrades[i].price.toFixed(1).toString() + ") " +
+        "\nOwned: (" + upgrades[i].numbought + ") ";
+
+      ops += upgrades[i].newops;
+      opc += upgrades[i].newopc;
+
+      refreshText();
+    }
+  });
+}
+```
