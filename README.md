@@ -35,6 +35,32 @@
 
 **Code**:
 In this code in order to change the tokens you would have to change multiple places (more in the full file but here are two of the changes).
+Before:
+```cpp
+while(getline(in, line)){
+      line_count++;
+      len = line.length();
+
+      // get first token
+      begin = min(line.find_first_not_of(delim, 0), len);
+      end = min(line.find_first_of(delim, begin), len);
+      token = line.substr(begin, end-begin);
+      
+      while(token!=""){  // we have a token
+         // update token buffer
+         if(!D.contains(token)){
+            D.setValue(token, token_count);
+            token_count++;
+         }
+
+         // get next token
+         begin = min(line.find_first_not_of(delim, end + 1), len);
+         end = min(line.find_first_of(delim, begin), len);
+         token = line.substr(begin, end-begin);
+      }
+   }
+```
+After:
 ```cpp
 size_t first_token(begin, end){
 	Begin = min(line.find_first_not_of(delim, 0), len);
