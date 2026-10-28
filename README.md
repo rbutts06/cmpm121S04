@@ -8,7 +8,7 @@
 
 **Description**: Mysterious Names are code names that have little to no distinction from one another, which can snowball into a code roadblock that could take hours to resolve. Figuring out which variables go where through thousands of lines of code can definitely deter progress.
 
-**Prevention and Refactoring**:For every code declaration (ie class, variable, function, etc.), you could rename them to become simple and direct in ways that explicitly state their use.
+**Prevention and Refactoring**: For every code declaration (ie class, variable, function, etc.), you could rename them to become simple and direct in ways that explicitly state their use.
 
 **Code**:
 
@@ -31,33 +31,42 @@
 
 **Description**: When you have to make an edit and to fully implement the change you must make a bunch of small changes in a bunch of places.
 
-**Prevention and Refactoring**:You can move all these little changes into one module or function so that there’s only one place to be changed, and in some cases, you can reduce the amount of changes. 
+**Prevention and Refactoring**: You can move all these little changes into one module or function so that there’s only one place to be changed, and in some cases, you can reduce the amount of changes. 
 
 **Code**:
 In this code in order to change the tokens you would have to change multiple places (more in the full file but here are two of the changes).
+```cpp
+size_t first_token(begin, end){
+	Begin = min(line.find_first_not_of(delim, 0), len);
+	end = min(line.find_first_of(delim, begin), len);
+	token = line.substr(begin, end-begin);
+} 
 
-	while( getline(in, line) )  {
-      line_count++;
-      len = line.length();
+size_t next_token(begin, end){
+	begin = min(line.find_first_not_of(delim, end + 1), len);
+	end = min(line.find_first_of(delim, begin), len);
+	token = line.substr(begin, end-begin);
+}
 
-      // get first token
-      begin = min(line.find_first_not_of(delim, 0), len);
-      end   = min(line.find_first_of(delim, begin), len);
-      token = line.substr(begin, end-begin);
-      
-      while( token!="" ){  // we have a token
-         // update token buffer
-         if(!D.contains(token)){
-            D.setValue(token, token_count);
-            token_count++;
-         }
+while(getline(in, line)){
+  line_count++;
+  len = line.length();
 
-         // get next token
-         begin = min(line.find_first_not_of(delim, end+1), len);
-         end   = min(line.find_first_of(delim, begin), len);
-         token = line.substr(begin, end-begin);
-      }
-   	}
+  // get first token
+  first_token(begin, end);
+  
+  while(token!=""){ // we have a token
+	 // update token buffer
+	 if(!D.contains(token)){
+		D.setValue(token, token_count);
+		token_count++;
+	 }
+
+	 // get next token
+	 next_token(begin, end);
+  }
+ }
+```
 
 ## Duplicate Code
 
