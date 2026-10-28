@@ -14,22 +14,28 @@
 
 Before: 
 ```typescript
-let x = 1;
-let y = 2;
 
-function calc(x:number, y:number) {
-	return x + y;
+let x = 5000;
+let y = 3000;
+
+function sub(x: number, y: number) {
+return x - y;
 }
 
-function calc2(x:number, y:number) {
-	return x - y;
-}
-
-calc1(x, y);
+sub(x,y);
 ```
 After:
+```typescript
 
+let revenue = 5000;
+let expenses = 3000;
 
+function total_profit(revenue: number, expenses: number) {
+return revenue - expenses;
+}
+
+total_profit(revenue,expenses)
+```
 
 
 ## Shotgun Surgery
